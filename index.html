@@ -1,0 +1,215 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>td-ecom-wa Release History</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#f5f7f7; --surface:#ffffff; --ink:#18232a; --muted:#5b6b72; --line:#dde5e6;
+  --accent:#0d6e6e; --accent-soft:#e1f0ef; --feat:#2f6f3e; --feat-bg:#e4f2e6; --fix:#9a4b12; --fix-bg:#fbeee2; --chore:#5b6b72; --chore-bg:#eef1f2;
+  --sans:"IBM Plex Sans Thai",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  color-scheme:dark;--bg:#111719;--surface:#182124;--ink:#e3eaeb;--muted:#93a4a9;--line:#2a373b;
+  --accent:#5cc3bd;--accent-soft:#18383a;--feat:#8fd29c;--feat-bg:#1d3323;--fix:#f0b27a;--fix-bg:#3a2717;--chore:#93a4a9;--chore-bg:#243034;}}
+:root[data-theme="dark"]{
+  color-scheme:dark;--bg:#111719;--surface:#182124;--ink:#e3eaeb;--muted:#93a4a9;--line:#2a373b;
+  --accent:#5cc3bd;--accent-soft:#18383a;--feat:#8fd29c;--feat-bg:#1d3323;--fix:#f0b27a;--fix-bg:#3a2717;--chore:#93a4a9;--chore-bg:#243034;}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.6;padding-inline:16px;padding-block:32px 64px}
+.wrap{max-width:920px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+header{display:flex;flex-direction:column;gap:10px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+h1{font-size:clamp(26px,4vw,36px);line-height:1.2;margin:0;text-wrap:balance}
+.sub{color:var(--muted);margin:0;max-width:65ch}
+.stats{display:flex;flex-wrap:wrap;gap:8px 24px;font-size:14px;color:var(--muted)}
+.stats b{color:var(--ink);font-variant-numeric:tabular-nums}
+.tools{display:flex;flex-wrap:wrap;gap:10px;align-items:center;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding-block:10px;z-index:2;border-bottom:1px solid var(--line)}
+.tools input{flex:1 1 240px;font:inherit;padding:8px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink)}
+.tools input:focus-visible,.tools button:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tools button{font:inherit;font-size:13px;padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);cursor:pointer}
+.tools button:hover{border-color:var(--accent)}
+.year{font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.08em;padding-top:8px}
+.rel{display:grid;grid-template-columns:150px 1fr;gap:6px 24px;padding-block:18px;border-top:1px solid var(--line)}
+.rel:first-of-type{border-top:0}
+.meta{display:flex;flex-direction:column;gap:2px}
+.ver{font-family:var(--mono);font-weight:600;font-size:17px;color:var(--accent)}
+.date{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.tag{display:inline-block;align-self:flex-start;font-size:12px;padding:1px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);margin-top:4px}
+.body{display:flex;flex-direction:column;gap:8px;min-width:0}
+.summary{margin:0;font-weight:500}
+details{border-radius:8px}
+summary{cursor:pointer;color:var(--muted);font-size:13px;width:max-content;max-width:100%}
+.days{display:flex;flex-direction:column;gap:12px;margin-top:10px}
+.day h4{margin:0 0 4px;font-size:13px;font-weight:600;color:var(--muted);font-variant-numeric:tabular-nums}
+.day ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.day li{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:baseline;font-size:14px}
+.k{font-family:var(--mono);font-size:11px;padding:1px 6px;border-radius:4px;min-width:44px;text-align:center}
+.k.feat{background:var(--feat-bg);color:var(--feat)}.k.fix{background:var(--fix-bg);color:var(--fix)}.k.other{background:var(--chore-bg);color:var(--chore)}
+.msg{overflow-wrap:anywhere}
+.sha{font-family:var(--mono);font-size:11px;color:var(--muted);margin-left:6px}
+.themes{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:14px}
+.empty{color:var(--muted);padding:24px 0}
+footer{font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+@media (max-width:600px){.rel{grid-template-columns:1fr}.meta{flex-direction:row;flex-wrap:wrap;gap:4px 12px;align-items:baseline}.tag{margin-top:0}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">td-ecom-wa · branch jenkins_prod</div>
+    <h1>ประวัติเวอร์ชัน (Release History)</h1>
+    <p class="sub">รายการสิ่งที่ขึ้น Production ในแต่ละเวอร์ชัน นับจาก commit ที่อยู่ระหว่าง tag message เวอร์ชันก่อนหน้า ถึง commit <code>v1.0.xx-PRD</code> ตัวนั้น (ไม่รวม merge commit) แยกตามวันที่ commit</p>
+    <div class="stats" id="stats"></div>
+  </header>
+
+  <div class="tools">
+    <input id="q" type="search" placeholder="ค้นหา เช่น czp, report, gis map, v1.0.30" aria-label="ค้นหา">
+    <button id="expand" type="button">เปิดทั้งหมด</button>
+    <button id="collapse" type="button">ปิดทั้งหมด</button>
+  </div>
+
+  <main id="list"></main>
+
+  <footer>ดึงข้อมูลจาก GitLab API (compare ระหว่าง commit เวอร์ชัน) · ข้อมูล ณ 25 ก.ย. 2026 · ป้าย feat / fix มาจาก prefix ของ commit message ส่วนที่ไม่มี prefix แสดงเป็น "other"</footer>
+</div>
+
+<script>
+const R = [
+{v:"v1.0.35-PRD",at:"2026-09-23 17:19",s:"เพิ่มฟีเจอร์ Reprint ใบเสร็จ (Reprint Receipt) และปรับการจัดการไฟล์ใบเสร็จเป็น async/await",c:`2026-09-11|368d3182|reprint - receipt
+2026-09-17|dcd18b92|Enhance reprint alert dialog with additional button for reprinting receipt
+2026-09-17|6463a435|Remove test call to showReprintAlert in ngOnInit
+2026-09-18|85286add|fix: refactor receipt file handling to use async/await for improved readability and error handling`},
+{v:"v1.0.34-PRD",at:"2026-09-22 16:47",s:"ปุ่ม Zoom in/out บน GIS map, ปรับ carousel ตามจำนวน category, แก้ viewport บน Safari มือถือ",c:`2026-09-22|f451df47|fix: add OnDestroy lifecycle hook and manage viewport meta tag for mobile Safari compatibility
+2026-09-22|61710da5|fix: update carousel visibility logic and responsive options based on category length
+2026-09-22|0df37d90|feat: add zoom in and zoom out functionality to GIS map with corresponding UI controls`},
+{v:"v1.0.33-PRD",at:"2026-09-17 11:00",s:"Carousel แสดงปุ่มเฉพาะเมื่อมี BTN_LINK",c:`2026-09-17|b781168f|fix: conditionally render button based on BTN_LINK presence in carousel`},
+{v:"v1.0.32-PRD",at:"2026-09-16 10:33",s:"Coin list (filter, p-chip), หน้า Contact + GIS basemap, User management, ซ่อน cart ใน header",c:`2026-09-14|67fc6aa0|coinlist , filter , p-chip
+2026-09-14|e8ab5ad1|page contact , gis map
+2026-09-14|9c4c5eb9|gismap basemap
+2026-09-15|f1300465|user management
+2026-09-16|52a9870c|isHideCart hedaer`},
+{v:"v1.0.31-PRD",at:"2026-09-14 13:08",s:"CZP login, coin list, กราฟิกแผนที่หน้า Contact",c:`2026-09-14|5132cd4f|czp login , coin list line , contact map graphic`},
+{v:"v1.0.30-PRD",at:"2026-09-10 15:25",s:"CZP: ซ่อนปุ่ม Back (setBackButtonVisible), ปรับ CSS re-captcha",c:`2026-09-09|30cd1a61|czp
+2026-09-09|819e4fa1|re-captcha css
+2026-09-10|923bfca4|setBackButtonVisible czp
+2026-09-10|46b96fe6|czp hide btn back
+2026-09-10|28562141|czp hide backbutton
+2026-09-10|89e3b6b2|setBackButtonVisible czp
+2026-09-10|87efd57a|setBackButtonVisible`},
+{v:"v1.0.29-PRD",at:"2026-09-09 08:37",s:"ปรับ/comment โค้ดส่วน CZP",c:`2026-09-09|67e9e687|comment czp`},
+{v:"v1.0.28-PRD",at:"2026-09-08 10:06",s:"Refactor หน้า main และ coin list",c:`2026-09-08|7e434973|refactor code main , coin list`},
+{v:"v1.0.27-PRD",at:"2026-09-04 10:23",s:"fillRandomTestData (ฟอร์มลงทะเบียน)",c:`2026-09-04|af0eed99|fillRandomTestData`},
+{v:"v1.0.26-PRD",at:"2026-09-04 10:19",s:"ลงทะเบียน CZP: alert, Privacy, ซ่อน captcha, เปลี่ยนไปใช้ axRequestService",c:`2026-09-03|be9f1912|alert regis
+2026-09-03|c5faf18e|PRIVACY
+2026-09-03|4838c14e|register czp hide capcha
+2026-09-04|25f476f0|regis change req axRequestService`},
+{v:"v1.0.25-PRD",at:"2026-09-03 16:41",s:"ลงทะเบียนผ่าน CZP",c:`2026-09-03|498b6abf|resgiter czp`},
+{v:"v1.0.24-PRD",at:"2026-09-02 17:50",s:"Reset captcha หน้าลงทะเบียน",c:`2026-09-02|a3e0b636|resetCaptcha register`},
+{v:"v1.0.23-PRD",at:"2026-09-02 16:43",s:"closeWindow CZP, เช็คการลงทะเบียนพร้อม loading และ toast",c:`2026-09-02|68fa545a|closeWindow czp
+2026-09-02|1bace6b0|check resgister  add loading and toast`},
+{v:"v1.0.22-PRD",at:"2026-09-02 10:19",s:"Captcha → ไปหน้า login",c:`2026-09-02|1a1ee45d|cap goto page login`},
+{v:"v1.0.21-PRD",at:"2026-09-02 08:46",s:"revokeTokenRequest และตรวจ mToken CZP",c:`2026-09-01|79568d74|revokeTokenRequest
+2026-09-01|a833e991|revokeTokenRequest
+2026-09-02|52fac0da|check m Token czp`},
+{v:"v1.0.20-PRD",at:"2026-09-01 09:47",s:"ลงทะเบียน CZP",c:`2026-08-31|7cbb3ea2|build
+2026-09-01|8ab51f52|czp register`},
+{v:"v1.0.19-PRD",at:"2026-08-31 18:01",s:"GUARD_BYPASS_PATHS (route guard bypass)",c:`2026-08-31|a19a75f5|GUARD_BYPASS_PATHS`},
+{v:"v1.0.18-PRD",at:"2026-08-28 17:30",s:"Reload หลัง login CZP",c:`2026-08-28|36157e46|reload after login czp`},
+{v:"v1.0.17-PRD",at:"2026-08-28 15:13",s:"ตั้งค่าโดเมน czp.dga.or.th",c:`2026-08-28|3f950ea3|czp.dga.or.th`},
+{v:"v1.0.16-PRD",at:"2026-08-28 14:14",s:"CZP login component + routing, internet check, เปิด/ปิด form control หน้า register/user management, กัน czpSdk undefined",c:`2026-03-06|97534e4d|feat: add CZP login component and routing, update index.html for internet check
+2026-03-06|b8e683be|fix: update internet check API endpoint to use Google for connectivity verification
+2026-06-12|61b513c9|feat: enable and disable form controls in register and user management components
+2026-06-12|79b13bb5|fix: disable TEL control and remove length validator in user management component
+2026-06-15|6b43f8e7|fix: comment out TEL control disabling in user management component
+2026-08-28|9fdcc949|fix: prevent undefined czpSdk crash in ThangrathService`},
+{v:"v1.0.15-PRD",tag:"ทางรัฐ",at:"2026-08-14 10:57",s:"รองรับแอปทางรัฐ (isCitizenPortal): ซ่อน search/cart ตาม hamburger menu, ปิด error toast ค่าส่ง, validate review/ที่อยู่",c:`2026-06-30|20d955b1|fix defact
+2026-06-30|124c50bd|fix isCitizenPortal
+2026-07-08|c913944a|fix: conditionally display search bar based on hamburger menu visibility
+2026-07-08|9276c4cf|fix: conditionally render cart and divider based on hamburger menu visibility
+2026-07-09|f0beb5ba|fix: simplify search bar rendering based on hamburger menu visibility
+2026-07-13|9644d3e6|fix: disable error toast for shipping calculation failures
+2026-07-16|40d28528|fix: disable error toast for delivery fetch failures
+2026-07-21|4366c63a|alert message
+2026-07-29|16a24ce2|fix: validate rating before submitting review and enhance user menu functionality
+2026-07-29|90f0ce52|fix: handle address form reset and navigate after submission
+2026-07-30|c26229d6|fix: add validation message for address selection and improve toast styling`},
+{v:"v1.0.14-PRD",at:"2026-08-07 21:32",s:"เปลี่ยนรหัสผ่านใน Card Login พร้อม validation",c:`2026-08-07|152d65f8|feat: implement change password functionality in card login component
+2026-08-07|6b3ddaf0|feat: enhance change password form with validation messages and security instructions
+2026-08-07|33f6dee0|feat: add validation to prevent new password from matching current password in change password functionality
+2026-08-07|d8bc06b8|feat: update change password warning message style to enhance visibility`},
+{v:"v1.0.13-PRD",at:"2026-06-29 08:19",s:"ประกาศ (announcement) และ label หน้า staff login",c:`2026-06-24|2c1370f9|announcement
+2026-06-26|8c001271|label staff login`},
+{v:"v1.0.12-PRD",at:"2026-05-29 10:04",s:"Coin list: safe navigation storeDetail.QUESTION, ปรับรูปและ label",c:`2026-05-29|74d2aa4e|fix: add safe navigation for storeDetail.QUESTION and improve image and label styles in coin list component`},
+{v:"v1.0.11-PRD",at:"2026-05-22 10:49",s:"รับเหรียญ: จัดการจำนวน (quantity) ตอนสแกน barcode",c:`2026-05-22|c3f56e1a|feat: add quantity handling in receive coin component during barcode product update`},
+{v:"v1.0.10-PRD",at:"2026-05-14 15:54",s:"รายงาน RPT04 (ฟอร์ม dynamic + ดาวน์โหลด Excel), RPT09-4 / RPT09-5",c:`2026-02-03|105c5312|feat: update report type condition to disable payment field for RPT09-4
+2026-02-03|5976f45b|build
+2026-04-29|7bb58d8f|feat: add RPT04 report type with dynamic form handling and data fetching
+2026-04-29|abaee58b|feat: add loading indicators for report generation and Excel download in RPT04
+2026-04-30|93d7cd39|feat: enhance report date handling and reset functionality in RPT04 and send money list components
+2026-05-14|df1554c3|feat: refactor RptBranchComponent for improved readability and update report code references to RPT09-5`},
+{v:"v1.0.9-PRD",at:"2026-02-03 13:30",s:"อ่านบัตรประชาชน (read card offline), หน้า CZP login, zipcode delivery, รายงาน RPT09-4",c:`2026-01-22|5720edd1|fix: parse user data correctly by handling potential null values and removing null characters
+2026-01-22|d4c95ef3|random number
+2026-01-22|57cd19fc|readCardOfflineUrl
+2026-01-22|bd941c96|fix: update data validation in handleReadCard to ensure data structure before processing
+2026-01-22|fe0f63cc|read id card
+2026-01-26|96f2b49b|czp page login
+2026-01-27|ac75453e|zipcode delivery
+2026-01-27|bf50fb84|czp login
+2026-01-30|b465fad5|feat: add new report type mapping for RPT09-4 in rpt-branch component
+2026-01-30|0392e591|report`},
+{v:"v1.0.8-PRD",at:"2026-01-22 14:19",s:"readCardOfflineUrl, handleReadCard",c:`2026-01-22|229d5e7f|readCardOfflineUrl  , handleReadCard`},
+{v:"v1.0.7-PRD",at:"2025-11-11 08:55",s:"ลบ class binding หน้า home ใน app component",c:`2025-11-11|957e4731|refactor: remove conditional class binding for home page in app component`},
+{v:"v1.0.6-PRD",at:"2025-10-31 16:33",s:"ปรับโครง layout app component และการตรวจหน้า home",c:`2025-10-31|2b2a8b15|refactor: restructure app component layout and enhance home page detection logic`},
+{v:"v1.0.5-PRD",at:"2025-10-27 09:35",s:"เปลี่ยน web service URL ไปใช้ legacy endpoints",c:`2025-10-20|ced66462|build again
+2025-10-20|d8943ed8|build
+2025-10-27|fe53f09b|fix: update web service URLs to use legacy endpoints and add missing newline in index.html`},
+{v:"v1.0.4-PRD",at:"2025-10-20 16:28",s:"แก้เงื่อนไข addCoin ไม่ให้เกินเหรียญคงเหลือ",c:`2025-10-20|b34af5e9|fix: update condition in addCoin method to ensure count is less than or equal to remaining coins`},
+{v:"v1.0.3-PRD",at:"2025-06-13 16:33",s:"Loading หน้า order delivery, RANGE_COIN, decode html",c:`2025-05-24|dc4e96bd|page order delivery loading
+2025-05-26|4844199f|RANGE_COIN Page list
+2025-06-13|cb7e8ab2|decode html`},
+{v:"v1.0.2-PRD",at:"2025-05-23 13:26",s:"ปิด request ตะกร้า (basket)",c:`2025-05-23|b37c83c2|disable basket req`},
+{v:"v1.0.1-PRD",at:"2025-05-19 10:05",s:"Release รวมงานสะสมตั้งแต่ ก.ค. 2024 – เม.ย. 2025 (267 commits) แสดงเป็นหัวข้อหลักแทนรายการเต็ม",big:267,themes:[
+"ก.ค.–ส.ค. 2024: สมาชิก/ลงทะเบียน, verify OTP, แผนที่ Contact + GIS basemap, หน้าอนุมัติ staff, barcode staff coin, แก้ defect หน้าชำระเงิน/ตะกร้า/รายงาน",
+"ปลาย ส.ค. 2024: TrueMoney, อ่านบัตรประชาชน onsite (readCardOfflineUrl), onsite SSO login, รายงาน PDF, ภาษีตะกร้า, คืนสินค้า/barcode return, ซื้อซ้ำ, เปลี่ยนรหัสผ่าน, หน้าแนะนำสินค้า",
+"ก.ย. 2024: config production + Jenkinsfile_Prod, NEWS_CONSENT, หน้าส่งเงิน, ประเมินราคาส่งเมล, webboard, ที่อยู่จัดส่ง, checkout/check order, จัดการ role onsite, รายงาน xlsx onsite, responsive",
+"ต.ค. 2024: bypass QR/billpayment, หน้า 404/error, dialog verify, รีวิวสินค้า, forgot password, เปลี่ยน label ทั้งระบบ, Google/Facebook sign-in ผ่าน Flutter",
+"พ.ย.–ธ.ค. 2024: social login/register บนมือถือ, verify ThaiD หลัง refresh token, websocket QR payment, custom dialog, zoom รูปสินค้า",
+"ม.ค.–เม.ย. 2025: config Facebook client, consent cookie, SonarQube stage, check order list, loginType / staff login, ThaiD เพิ่มลงตะกร้า, insert device info, error ThaiPost, ปุ่มแบบสอบถาม, ORDER_DATE_END, ลิงก์ Contact us"
+]},
+{v:"v1.0.0",at:"2024-07-01",s:"Baseline แรกของ branch jenkins_prod (ต่อจาก build UAT ช่วง มิ.ย. 2024)",c:""}
+];
+
+const TH=["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."];
+const thDate=d=>{const [y,m,dd]=d.split("-");return `${+dd} ${TH[+m-1]} ${y}`};
+const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+R.forEach(r=>{r.items=r.c?r.c.split("\n").map(l=>{const [d,sha,...m]=l.split("|");return {d,sha,m:m.join("|").trim()}}):[];});
+
+const total=R.reduce((a,r)=>a+(r.big||r.items.length),0);
+document.getElementById("stats").innerHTML=`<span><b>${R.length}</b> เวอร์ชัน</span><span><b>${total}</b> commits</span><span>ล่าสุด <b>${R[0].v}</b> · ${thDate(R[0].at.slice(0,10))}</span>`;
+
+function kind(m){if(/^feat/i.test(m))return["feat","feat"];if(/^fix/i.test(m))return["fix","fix"];return["other","other"]}
+
+function render(q){
+  q=(q||"").trim().toLowerCase();
+  const list=document.getElementById("list");let html="",year="",shown=0;
+  for(const r of R){
+    const hay=(r.v+" "+(r.tag||"")+" "+r.s+" "+r.items.map(i=>i.m).join(" ")+" "+(r.themes||[]).join(" ")).toLowerCase();
+    if(q&&!hay.includes(q))continue;shown++;
+    const y=r.at.slice(0,4);if(y!==year){year=y;html+=`<div class="year">${y}</div>`}
+    let detail="";
+    if(r.themes){detail=`<ul class="themes">${r.themes.map(t=>`<li>${esc(t)}</li>`).join("")}</ul>`}
+    else if(r.items.length){
+      const days={};r.items.forEach(i=>(days[i.d]=days[i.d]||[]).push(i));
+      const keys=Object.keys(days).sort().reverse();
+      detail=`<details${q?" open":""}><summary>${r.items.length} commits · ${keys.length} วัน</summary><div class="days">${keys.map(d=>`<div class="day"><h4>${thDate(d)}</h4><ul>${days[d].map(i=>{const[k,l]=kind(i.m);return `<li><span class="k ${k}">${l}</span><span class="msg">${esc(i.m)}<span class="sha">${i.sha}</span></span></li>`}).join("")}</ul></div>`).join("")}</div></details>`;
+    }
+    html+=`<section class="rel" id="${r.v.replace(/\./g,"-")}"><div class="meta"><span class="ver">${r.v}</span><span class="date">${thDate(r.at.slice(0,10))}${r.at.length>10?" · "+r.at.slice(11):""}</span>${r.tag?`<span class="tag">${r.tag}</span>`:""}</div><div class="body"><p class="summary">${esc(r.s)}</p>${detail}</div></section>`;
+  }
+  list.innerHTML=shown?html:`<p class="empty">ไม่พบเวอร์ชันที่ตรงกับ “${esc(q)}”</p>`;
+}
+render("");
+const qi=document.getElementById("q");qi.addEventListener("input",()=>render(qi.value));
+document.getElementById("expand").onclick=()=>document.querySelectorAll("details").forEach(d=>d.open=true);
+document.getElementById("collapse").onclick=()=>document.querySelectorAll("details").forEach(d=>d.open=false);
+</script>
+
+</body></html>
